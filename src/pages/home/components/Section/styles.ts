@@ -13,7 +13,7 @@ interface CircleProps {
 }
 
 export const SectionWarpper = styled.div`
-  min-height: 544px; /* ANALISAR */
+  min-height: 544px;
   display: flex;
   align-items: center;
 
