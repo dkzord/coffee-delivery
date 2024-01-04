@@ -14,12 +14,12 @@ export const Home = () => {
         <h1>Nossos cafés</h1>
 
         <S.MenuList>
-          <Card title="Mocaccino" />
-          <div style={{ background: 'green' }}>item 2</div>
-          <div style={{ background: 'green' }}>item 3</div>
-          <div style={{ background: 'green' }}>item 4</div>
-          <div style={{ background: 'green' }}>item 4</div>
-          <div style={{ background: 'green' }}>item 4</div>
+          <Card
+            title="Expresso Tradicional"
+            description="O tradicional café feito com água quente e grãos moídos"
+            price={Number(9.9).toFixed(2)}
+            tags={['item 1', 'item 2']}
+          />
         </S.MenuList>
       </S.MenuContainer>
     </div>

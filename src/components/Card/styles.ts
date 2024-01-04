@@ -30,7 +30,7 @@ export const CardContent = styled.div`
   position: relative;
   top: -2.625rem;
 
-  h1 {
+  h2 {
     font: ${(props) => props.theme.font.titleS};
     color: ${(props) => props.theme.color.base.subtitle};
     margin: 0;

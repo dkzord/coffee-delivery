@@ -7,9 +7,12 @@ import { useState } from 'react'
 
 interface CardProps {
   title: string
+  description: string
+  price: string
+  tags: string[]
 }
 
-export const Card = ({ title }: CardProps) => {
+export const Card = ({ title, description, price, tags }: CardProps) => {
   const [amount, setAmount] = useState(1)
 
   const handleAmountLess = () => {
@@ -31,14 +34,15 @@ export const Card = ({ title }: CardProps) => {
       </S.CardImage>
       <S.CardContent>
         <S.TagList>
-          <S.Tag>AQUI</S.Tag>
-          <S.Tag>AQUI</S.Tag>
+          {tags.map((tag, index) => (
+            <S.Tag key={index}>{tag}</S.Tag>
+          ))}
         </S.TagList>
-        <h1>{title}</h1>
-        <p>Café expresso com calda de chocolate, pouco leite e espuma</p>
+        <h2>{title}</h2>
+        <p>{description}</p>
         <S.CardFooter>
           <S.Price>
-            <span>R$</span> 4,50
+            <span>R$</span> {price.replace(/\./g, ',')}
           </S.Price>
           <S.Amount>
             <button onClick={handleAmountLess}>
