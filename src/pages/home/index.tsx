@@ -24,10 +24,12 @@ export const Home = () => {
           {coffeeList.map((coffee) => (
             <Card
               key={coffee.id}
+              id={coffee.id}
               title={coffee.title}
               description={coffee.description}
               price={coffee.price.toFixed(2)}
               tags={coffee.tags}
+              image={coffee.image}
             />
           ))}
         </S.MenuList>

@@ -1,18 +1,27 @@
 import cartCard from '@/assets/cartCard.svg'
-import expressIcon from '@/assets/expressIcon.svg'
 import { Minus, Plus } from '@phosphor-icons/react'
 
 import * as S from './styles'
 import { useState } from 'react'
+import { imageCoffee } from '@/utils/imageCoffee'
 
 interface CardProps {
+  id: number
   title: string
   description: string
   price: string
   tags: string[]
+  image: string
 }
 
-export const Card = ({ title, description, price, tags }: CardProps) => {
+export const Card = ({
+  id,
+  title,
+  description,
+  price,
+  tags,
+  image,
+}: CardProps) => {
   const [amount, setAmount] = useState(1)
 
   const handleAmountLess = () => {
@@ -30,7 +39,7 @@ export const Card = ({ title, description, price, tags }: CardProps) => {
   return (
     <S.CardContainer>
       <S.CardImage>
-        <img src={expressIcon} alt="express-icon" />
+        <img src={imageCoffee(image)} alt="express-icon" />
       </S.CardImage>
       <S.CardContent>
         <S.TagList>
