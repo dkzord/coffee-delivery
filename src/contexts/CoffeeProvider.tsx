@@ -82,8 +82,6 @@ export const CoffeeProvider = ({ children }: CoffeeProviderProps) => {
     localStorage.setItem('@coffee-delivery:cart-state-1.0.0', stateJson)
   }, [cartCoffee])
 
-  console.log(cartCoffee.coffeeItem)
-
   return (
     <CoffeeContext.Provider
       value={{
