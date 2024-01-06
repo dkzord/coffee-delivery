@@ -3,8 +3,15 @@ import logoImg from '@/assets/logo.svg'
 import MapPinImg from '@/assets/mapPin.svg'
 
 import * as S from './styles'
+import { useContextSelector } from 'use-context-selector'
+import { CoffeeContext } from '@/contexts/CoffeeProvider'
 
 export const Header = () => {
+  const amountItem = useContextSelector(
+    CoffeeContext,
+    (context) => context.amountItem,
+  )
+
   return (
     <S.HeaderContainer>
       <S.HeaderContent>
@@ -16,7 +23,7 @@ export const Header = () => {
           </S.Option>
           <S.Option variant="cart">
             <img src={cart} alt="" />
-            <S.SpanCart>0</S.SpanCart>
+            <S.SpanCart>{amountItem}</S.SpanCart>
           </S.Option>
         </S.HeaderOptions>
       </S.HeaderContent>

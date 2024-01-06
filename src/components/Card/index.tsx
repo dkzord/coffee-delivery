@@ -4,6 +4,8 @@ import { Minus, Plus } from '@phosphor-icons/react'
 import * as S from './styles'
 import { useState } from 'react'
 import { imageCoffee } from '@/utils/imageCoffee'
+import { useContextSelector } from 'use-context-selector'
+import { CoffeeContext } from '@/contexts/CoffeeProvider'
 
 interface CardProps {
   id: number
@@ -22,6 +24,11 @@ export const Card = ({
   tags,
   image,
 }: CardProps) => {
+  const addCoffeeToCart = useContextSelector(
+    CoffeeContext,
+    (context) => context.addCoffeeToCart,
+  )
+
   const [amount, setAmount] = useState(1)
 
   const handleAmountLess = () => {
@@ -34,6 +41,18 @@ export const Card = ({
     if (amount === 10) return
 
     setAmount(amount + 1)
+  }
+
+  const handleAddCoffeeToCart = () => {
+    addCoffeeToCart({
+      id,
+      title,
+      description,
+      price: Number(price),
+      tags,
+      image,
+      amount,
+    })
   }
 
   return (
@@ -62,7 +81,7 @@ export const Card = ({
               <Plus size={14} />
             </button>
           </S.Amount>
-          <S.Button>
+          <S.Button onClick={handleAddCoffeeToCart}>
             <img src={cartCard} alt="" />
           </S.Button>
         </S.CardFooter>
