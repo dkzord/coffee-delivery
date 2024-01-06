@@ -1,10 +1,10 @@
 import cartCard from '@/assets/cartCard.svg'
-import * as S from './styles'
-import { useState } from 'react'
+import { InputQuantity } from '../InputQuantity'
 import { imageCoffee } from '@/utils/imageCoffee'
 import { useContextSelector } from 'use-context-selector'
 import { CoffeeContext } from '@/contexts/CoffeeProvider'
-import { InputQuantity } from '../InputQuantity'
+
+import * as S from './styles'
 
 interface CardProps {
   id: number
@@ -28,18 +28,29 @@ export const Card = ({
     (context) => context.addCoffeeToCart,
   )
 
-  const [amount, setAmount] = useState(1)
+  const items = useContextSelector(
+    CoffeeContext,
+    (context) => context.itemQuantity,
+  )
+
+  const quantity = items.find((item) => item.id === id)
+
+  const incrementCoffee = useContextSelector(
+    CoffeeContext,
+    (context) => context.incrementCoffee,
+  )
+
+  const decrementCoffee = useContextSelector(
+    CoffeeContext,
+    (context) => context.decrementCoffee,
+  )
 
   const handleAmountLess = () => {
-    if (amount === 1) return
-
-    setAmount(amount - 1)
+    decrementCoffee(id)
   }
 
   const handleAmountMore = () => {
-    if (amount === 10) return
-
-    setAmount(amount + 1)
+    incrementCoffee(id)
   }
 
   const handleAddCoffeeToCart = () => {
@@ -50,7 +61,7 @@ export const Card = ({
       price: Number(price),
       tags,
       image,
-      amount,
+      amount: quantity?.amount ? quantity.amount : 1,
     })
   }
 
@@ -72,13 +83,14 @@ export const Card = ({
             <span>R$</span> {price.replace(/\./g, ',')}
           </S.Price>
           <InputQuantity
-            quantity={amount}
-            incrementQuantity={handleAmountMore}
+            quantity={quantity ? quantity.amount : 1}
             decrementQuantity={handleAmountLess}
+            incrementQuantity={handleAmountMore}
           />
           <S.Button onClick={handleAddCoffeeToCart}>
             <img src={cartCard} alt="" />
           </S.Button>
+          {/* <button onClick={hanldeIncrementCoffee}>aqui</button> */}
         </S.CardFooter>
       </S.CardContent>
     </S.CardContainer>

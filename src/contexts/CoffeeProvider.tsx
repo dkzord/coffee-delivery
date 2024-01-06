@@ -1,15 +1,23 @@
+import {
+  addCoffeeAction,
+  removeCoffeeAction,
+  decrementCoffeeAction,
+  incrementCoffeeAction,
+} from '@/reducers/cart/actions'
 import { api } from '@/lib/axios'
 import { createContext } from 'use-context-selector'
-import { Coffee, cartReducer } from '@/reducers/cart/reducer'
+import { Coffee, Item, cartReducer } from '@/reducers/cart/reducer'
 import { useCallback, useEffect, useReducer, useState } from 'react'
-import { addCoffeeAction, removeCoffeeAction } from '@/reducers/cart/actions'
 
 interface CoffeeProviderContextType {
   coffees: Coffee[]
   cartCoffee: Coffee[]
+  itemQuantity: Item[]
   amountItem: number
   addCoffeeToCart: (coffee: Coffee) => void
   removeCoffeeFromCart: (coffee: Coffee) => void
+  incrementCoffee: (itemId: Item['id']) => void
+  decrementCoffee: (itemId: Item['id']) => void
 }
 
 interface CoffeeProviderProps {
@@ -23,6 +31,7 @@ export const CoffeeProvider = ({ children }: CoffeeProviderProps) => {
     cartReducer,
     {
       coffeeItem: [],
+      item: [],
     },
     (initialState) => {
       const stateStorage = localStorage.getItem(
@@ -54,6 +63,14 @@ export const CoffeeProvider = ({ children }: CoffeeProviderProps) => {
     dispatch(removeCoffeeAction(coffee))
   }
 
+  const incrementCoffee = (itemId: Item['id']) => {
+    dispatch(incrementCoffeeAction(itemId))
+  }
+
+  const decrementCoffee = (itemId: Item['id']) => {
+    dispatch(decrementCoffeeAction(itemId))
+  }
+
   useEffect(() => {
     fetchCoffee()
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -73,7 +90,10 @@ export const CoffeeProvider = ({ children }: CoffeeProviderProps) => {
         coffees,
         addCoffeeToCart,
         removeCoffeeFromCart,
+        incrementCoffee,
+        decrementCoffee,
         cartCoffee: cartCoffee.coffeeItem,
+        itemQuantity: cartCoffee.item,
         amountItem,
       }}
     >
