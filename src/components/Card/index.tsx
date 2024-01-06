@@ -1,11 +1,10 @@
 import cartCard from '@/assets/cartCard.svg'
-import { Minus, Plus } from '@phosphor-icons/react'
-
 import * as S from './styles'
 import { useState } from 'react'
 import { imageCoffee } from '@/utils/imageCoffee'
 import { useContextSelector } from 'use-context-selector'
 import { CoffeeContext } from '@/contexts/CoffeeProvider'
+import { InputQuantity } from '../InputQuantity'
 
 interface CardProps {
   id: number
@@ -72,15 +71,11 @@ export const Card = ({
           <S.Price>
             <span>R$</span> {price.replace(/\./g, ',')}
           </S.Price>
-          <S.Amount>
-            <button onClick={handleAmountLess}>
-              <Minus size={14} />
-            </button>
-            <input type="number" readOnly value={amount} min="1" max="10" />
-            <button onClick={handleAmountMore}>
-              <Plus size={14} />
-            </button>
-          </S.Amount>
+          <InputQuantity
+            quantity={amount}
+            incrementQuantity={handleAmountMore}
+            decrementQuantity={handleAmountLess}
+          />
           <S.Button onClick={handleAddCoffeeToCart}>
             <img src={cartCard} alt="" />
           </S.Button>
