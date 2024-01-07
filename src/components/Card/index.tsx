@@ -90,7 +90,6 @@ export const Card = ({
           <S.Button onClick={handleAddCoffeeToCart}>
             <img src={cartCard} alt="" />
           </S.Button>
-          {/* <button onClick={hanldeIncrementCoffee}>aqui</button> */}
         </S.CardFooter>
       </S.CardContent>
     </S.CardContainer>
