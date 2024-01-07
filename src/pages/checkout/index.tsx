@@ -11,6 +11,8 @@ import { z } from 'zod'
 import * as S from './styles'
 import { useContextSelector } from 'use-context-selector'
 import { CoffeeContext } from '@/contexts/CoffeeProvider'
+import { CartItem } from '@/components/CartItem'
+import { priceFormatter } from '@/utils/formatter'
 
 type FormInputs = {
   cep: number
@@ -45,7 +47,17 @@ export const Checkout = () => {
     (context) => context.cartCoffee,
   )
 
-  console.log('cartCoffee ===>>', cartCoffee)
+  const postCoffeeOrder = useContextSelector(
+    CoffeeContext,
+    (context) => context.postCoffeeOrder,
+  )
+
+  let total = 0
+  cartCoffee.forEach((item) => {
+    if (item.amount !== undefined) {
+      total += item.amount * item.price
+    }
+  })
 
   const {
     register,
@@ -57,9 +69,16 @@ export const Checkout = () => {
   })
 
   const selectedPaymentMethod = watch('paymentMethod')
+  const delivery = 3.5
 
   const handleOrderCheckout: SubmitHandler<FormInputs> = (data) => {
-    console.log('conteúdo ===>>', data)
+    const order = {
+      ...data,
+      total: total + delivery,
+      coffees: cartCoffee,
+    }
+
+    postCoffeeOrder(order)
   }
 
   return (
@@ -184,7 +203,39 @@ export const Checkout = () => {
         </form>
         <div>
           <S.Title>Cafés selecionados</S.Title>
-          <S.PaymentContainer>aaaaaaaa</S.PaymentContainer>
+          <S.PaymentContainer>
+            <S.OrderCoffee>
+              {cartCoffee.map((coffee) => (
+                <CartItem
+                  key={coffee.id}
+                  id={coffee.id}
+                  amount={coffee.amount}
+                  image={coffee.image}
+                  price={coffee.price}
+                  title={coffee.title}
+                  description={coffee.description}
+                  tags={coffee.tags}
+                />
+              ))}
+            </S.OrderCoffee>
+            <S.OrderResume>
+              <div>
+                <span>Total de itens</span>
+                <span>{priceFormatter.format(total)}</span>
+              </div>
+              <div>
+                <span>Entrega</span>
+                <span>{priceFormatter.format(delivery)}</span>
+              </div>
+              <div>
+                <h2>Total</h2>
+                <h2>{priceFormatter.format(delivery + total)}</h2>
+              </div>
+            </S.OrderResume>
+            <S.ButtonConfirm type="submit" form="order">
+              Confirmar pedido
+            </S.ButtonConfirm>
+          </S.PaymentContainer>
         </div>
       </S.CheckoutContainer>
     </div>

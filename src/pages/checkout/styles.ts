@@ -3,7 +3,7 @@ import styled from 'styled-components'
 export const CheckoutContainer = styled.main`
   display: grid;
   grid-template-columns: 1.3fr 0.7fr;
-  gap: 32px;
+  gap: 10px;
 
   width: 100%;
   max-width: 1120px;
@@ -74,9 +74,55 @@ export const PaymentContainer = styled(BaseContainer)`
   border-bottom-left-radius: 44px;
 `
 
-export const DivSeparator = styled.div`
+export const OrderCoffee = styled.div`
   display: flex;
-  gap: 1rem;
+  flex-direction: column;
+  gap: 28px;
+`
 
+export const OrderResume = styled.div`
+  display: flex;
+  flex-direction: column;
+  margin-top: 20px;
+  gap: 15px;
+
+  div {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 8px;
+
+    span {
+      color: ${(props) => props.theme.color.base.text};
+      font: ${(props) => props.theme.font.textS};
+    }
+
+    h2 {
+      color: ${(props) => props.theme.color.base.subtitle};
+      font: ${(props) => props.theme.font.textLBold};
+    }
+  }
+`
+
+export const ButtonConfirm = styled.button`
+  display: flex;
+  align-items: center;
+  justify-content: center;
   width: 100%;
+
+  border: none;
+  background: ${(props) => props.theme.color.yellow};
+  color: ${(props) => props.theme.color.base.white};
+  font: ${(props) => props.theme.font.buttonG};
+  text-transform: uppercase;
+
+  padding: 12px 8px;
+  border-radius: 0.375rem;
+  margin-top: 2rem;
+
+  transition: filter 0.2s;
+
+  &:hover {
+    filter: brightness(0.9);
+  }
 `
