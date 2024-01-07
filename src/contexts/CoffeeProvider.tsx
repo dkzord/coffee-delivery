@@ -9,6 +9,18 @@ import { createContext } from 'use-context-selector'
 import { Coffee, Item, cartReducer } from '@/reducers/cart/reducer'
 import { useCallback, useEffect, useReducer, useState } from 'react'
 
+interface Order {
+  coffees: Coffee[]
+  total: number
+  cep: number
+  city: string
+  fullAddress: string
+  neighborhood: string
+  number: string
+  paymentMethod: 'credit' | 'debit' | 'cash'
+  state: string
+  street: string
+}
 interface CoffeeProviderContextType {
   coffees: Coffee[]
   cartCoffee: Coffee[]
@@ -18,6 +30,7 @@ interface CoffeeProviderContextType {
   removeCoffeeFromCart: (coffee: Coffee) => void
   incrementCoffee: (itemId: Item['id']) => void
   decrementCoffee: (itemId: Item['id']) => void
+  postCoffeeOrder: (order: Order) => void
 }
 
 interface CoffeeProviderProps {
@@ -54,6 +67,10 @@ export const CoffeeProvider = ({ children }: CoffeeProviderProps) => {
 
     setCoffees(reponse.data)
   }, [])
+
+  const postCoffeeOrder = async (order: Order) => {
+    await api.post('order', order)
+  }
 
   const addCoffeeToCart = (coffee: Coffee) => {
     dispatch(addCoffeeAction(coffee))
@@ -93,6 +110,7 @@ export const CoffeeProvider = ({ children }: CoffeeProviderProps) => {
         cartCoffee: cartCoffee.coffeeItem,
         itemQuantity: cartCoffee.item,
         amountItem,
+        postCoffeeOrder,
       }}
     >
       {children}
