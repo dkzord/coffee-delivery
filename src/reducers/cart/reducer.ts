@@ -51,6 +51,10 @@ export function cartReducer(state: CoffeeState, action: Action): CoffeeState {
 
         if (coffeeIndex >= 0) {
           draft.item[coffeeIndex].amount += 1
+          if (draft.coffeeItem[coffeeIndex]) {
+            draft.coffeeItem[coffeeIndex].amount =
+              draft.item[coffeeIndex].amount
+          }
         } else {
           draft.item.push({
             id: action.payload.itemId,
@@ -66,6 +70,10 @@ export function cartReducer(state: CoffeeState, action: Action): CoffeeState {
 
         if (coffeeIndex >= 0 && draft.item[coffeeIndex].amount > 1) {
           draft.item[coffeeIndex].amount -= 1
+          if (draft.coffeeItem[coffeeIndex]) {
+            draft.coffeeItem[coffeeIndex].amount =
+              draft.item[coffeeIndex].amount
+          }
         } else {
           draft.item.push({
             id: action.payload.itemId,
