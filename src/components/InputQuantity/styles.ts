@@ -9,9 +9,12 @@ export const Amount = styled.div`
   border-radius: 6px;
   padding: 8px;
 
+  width: 72px;
+  height: 32px;
+
   input {
     font: ${(props) => props.theme.font.textMRegular};
-    width: 1.875rem;
+    width: 16px;
     background: transparent;
     border: none;
     outline: none;

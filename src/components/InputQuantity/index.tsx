@@ -17,7 +17,7 @@ export const InputQuantity = ({
       <button onClick={decrementQuantity}>
         <Minus size={14} />
       </button>
-      <input type="number" readOnly value={quantity} min="1" max="10" />
+      <input type="number" readOnly value={quantity} min="1" />
       <button onClick={incrementQuantity}>
         <Plus size={14} />
       </button>
