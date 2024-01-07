@@ -1,30 +1,55 @@
-# React + TypeScript + Vite
+# Coffee Delivery
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+<h1>
+    <img src="https://ik.imagekit.io/dkzord/image_vUx4YwVIT.png">
+</h1>
 
-Currently, two official plugins are available:
+# Indice
+- [Sobre](#-sobre)
+- [Tecnologia utilizada](#-tecnologia-utilizada)
+- [Como baixar o projeto](#-como-baixar-o-projeto)
+- [Como rodar o projeto](#-como-rodar-o-projeto)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+---
+# 📜 Sobre
 
-## Expanding the ESLint configuration
+Projeto desenvolvido em um desafio da RocketSet na trilha React.
+O projeto consistia no desenvolvimento de uma página web com todas suas funcionalidade a partir de um layout disponível do figma.
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+---
 
-- Configure the top-level `parserOptions` property like this:
+# 📘 Tecnologia utilizada
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
+- [Vite](https://vitejs.dev)
+- [axios](https://axios-http.com)
+- [json-server](https://github.com/typicode/json-server)
+- [styled-components](https://styled-components.com)
+- [use-context-selector](https://github.com/dai-shi/use-context-selector)
+- [zod](https://zod.dev)
+
+---
+
+# 📁 Como baixar o projeto
+
+```bash
+    #Clonar repositorio
+    $ git clone https://github.com/dkzord/coffee-delivery.git
+
+    #Entrar na pasta
+    $ cd coffee-delivery
 ```
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+---
+
+# 📁 Como rodar o projeto
+
+```bash
+    #Rode o servidor de exemplo
+    $ npm run server
+
+    #Rode o projeto
+    $ npm run dev
+```
+
+
+
