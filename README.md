@@ -20,12 +20,14 @@ O projeto consistia no desenvolvimento de uma página web com todas suas funcion
 
 # 📘 Tecnologia utilizada
 
-- [Vite](https://vitejs.dev)
-- [axios](https://axios-http.com)
-- [json-server](https://github.com/typicode/json-server)
-- [styled-components](https://styled-components.com)
-- [use-context-selector](https://github.com/dai-shi/use-context-selector)
-- [zod](https://zod.dev)
+- [Node](https://nodejs.org/en) - V20.10
+- [React](https://react.dev) - V18.2
+- [Vite](https://vitejs.dev) - V5.0
+- [axios](https://axios-http.com) - V1.6
+- [json-server](https://github.com/typicode/json-server) - V0.17
+- [styled-components](https://styled-components.com) - V6.1
+- [use-context-selector](https://github.com/dai-shi/use-context-selector) - V1.4
+- [zod](https://zod.dev) - V3.22
 
 ---
 
